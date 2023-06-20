@@ -1,0 +1,9 @@
+---
+title: "Babynames"
+format: html
+editor: visual
+#| echo = FALSE
+#| message = FALSE
+---
+
+```{r}
