@@ -2,8 +2,34 @@
 title: "Babynames"
 format: html
 editor: visual
-#| echo = FALSE
-#| message = FALSE
+execute:
+  echo: FALSE
+  message: FALSE
 ---
 
 ```{r}
+library(tidyverse)
+#install.packages("meltr")
+
+```
+
+```{r}
+babyname <- read_csv("data/i_names.csv", show_col_types = FALSE)
+View(head(babyname))
+
+x <- babyname |>
+  select(year, sex, n, prop) |>
+  mutate(prop = prop*1000000) |>
+  summarize(sum_prop = sum(prop), .by = c(year, sex)) 
+summary(x)
+
+x |> slice_sample(n = 5)
+x |> count(sex)
+
+x |>
+  filter(year >= 1900) |>
+  ggplot(aes(x = year, y = sum_prop, fill = sex)) + geom_smooth(method = "loess", alpha = 0.5, se = FALSE, aes(fill = sex, color = sex))
+
+  
+
+```
