@@ -5,3 +5,5 @@
 
 *.Rproj
 class-week-4.Rmd
+*files
+rsconnect
